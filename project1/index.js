@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -14,7 +15,7 @@ const Blog = mongoose.model('Blog', blogSchema)
 
 const password = process.argv[2]
 
-const mongoUrl = `mongodb+srv://vkassharma19492:${password}@cluster0.5v0r24l.mongodb.net/blogList?retryWrites=true&w=majority`
+const mongoUrl = process.env.mongoUrl
 mongoose.connect(mongoUrl)
 
 app.use(cors())
@@ -38,7 +39,7 @@ app.post('/api/blogs', (request, response) => {
         })
 })
 
-const PORT = 3003
+const PORT = process.env.PORT || 3003
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
