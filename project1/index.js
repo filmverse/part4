@@ -1,22 +1,9 @@
 const express = require('express')
 require('dotenv').config()
 const app = express()
+const Blog = require('./models/blog')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
-const blogSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    url: String,
-    likes: Number
-})
-
-const Blog = mongoose.model('Blog', blogSchema)
-
-const password = process.argv[2]
-
-const mongoUrl = process.env.mongoUrl
-mongoose.connect(mongoUrl)
 
 app.use(cors())
 app.use(express.json())
