@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Note from './components/Note';
 
 const baseUrl = 'http://localhost:3001/notes'
 
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <div>
       <h1>Hello World</h1>
+      {notes.map(note => <Note key={note.id} note={note} />)}
     </div>
   )
 }
