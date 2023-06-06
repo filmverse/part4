@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import noteApp from './services/notes';
 import Note from './components/Note';
 import NoteForm from './components/NoteForm';
 
@@ -13,7 +14,7 @@ const App = () => {
   const [ showAll, setShowAll ] = useState(true)
 
   const hook = () => {
-    axios.get(baseUrl).then(response => {
+    noteApp.getAll().then(response => {
       console.log(response.data)
       setNotes(response.data)
     })
@@ -26,12 +27,26 @@ const App = () => {
       content: newNote,
       important: Math.random() < 0.5,
     }
-    axios.post(baseUrl, addNote).then(
+    noteApp.create(addNote).then(
       response => {
         setNotes(notes.concat(response.data))
         setNewNote("")
       }
     )
+  }
+
+  const removeNote = (id) => () => {
+    noteApp.remove(id).then(() => {
+      setNotes(notes.filter(note => note.id !== id))
+    })
+  }
+
+  const toggleNoteImportance = (id) => () => {
+    const note = notes.find(note => note.id === id)
+    const toggleNote = {...note, important: !note.important}
+    noteApp.update(id, toggleNote).then(response => {
+      setNotes(notes.map(note => note.id === id ? response.data : note))
+    })
   }
 
   const noteToShow = showAll
@@ -40,20 +55,6 @@ const App = () => {
 
   const handleChange = (funObj) => (event) => {
     funObj(event.target.value)
-  }
-
-  const removeNote = (id) => () => {
-    axios.delete(`${baseUrl}/${id}`).then(() => {
-      setNotes(notes.filter(note => note.id !== id))
-    })
-  }
-
-  const toggleNoteImportance = (id) => () => {
-    const note = notes.find(note => note.id === id)
-    const toggleNote = {...note, important: !note.important}
-    axios.put(`${baseUrl}/${id}`, toggleNote).then(response => {
-      setNotes(notes.map(note => note.id === id ? response.data : note))
-    })
   }
 
   return (
