@@ -1,9 +1,9 @@
 
-const Note = ({ note }) => {
+const Note = ({ note, removeNote }) => {
     return (
         <div>
             <ul>
-                <li>{note.content}</li>
+                <li>{note.content} <button onClick={removeNote(note.id)}>Delete</button></li>
             </ul>
         </div>
     )

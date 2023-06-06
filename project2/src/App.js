@@ -34,13 +34,19 @@ const App = () => {
     )
   }
 
+  const noteToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true)
+
   const handleChange = (funObj) => (event) => {
     funObj(event.target.value)
   }
 
-  const noteToShow = showAll
-    ? notes
-    : notes.filter(note => note.important === true)
+  const removeNote = (id) => () => {
+    axios.delete(`${baseUrl}/${id}`).then(() => {
+      setNotes(notes.filter(note => note.id !== id))
+    })
+  }
 
   return (
     <div>
@@ -48,7 +54,7 @@ const App = () => {
       <button onClick={() => {setShowAll(!showAll)}}>
         show {showAll ? "important" : "all"}
       </button>
-      {noteToShow.map(note => <Note key={note.id} note={note} />)}
+      {noteToShow.map(note => <Note key={note.id} note={note} removeNote={removeNote} />)}
       <NoteForm addNote={addNote} newNote={newNote} handleChange={handleChange(setNewNote)} />
       <p>Debug: {newNote}</p>
     </div>
