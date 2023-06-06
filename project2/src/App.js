@@ -42,7 +42,7 @@ const App = () => {
       {notes.map(note => <Note key={note.id} note={note} />)}
       <form onSubmit={addNote}>
         <input value={newNote} onChange={handleChange(setNewNote)}/>
-        <button type="submit">add</button>
+        <button type="submit">save</button>
       </form>
       <p>Debug: {newNote}</p>
     </div>

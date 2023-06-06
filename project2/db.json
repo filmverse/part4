@@ -16,19 +16,14 @@
       "important": true
     },
     {
-      "content": "Testing",
-      "important": false,
+      "content": "New Note",
+      "important": true,
       "id": 4
     },
     {
-      "content": "newNote",
+      "content": "Testing",
       "important": false,
       "id": 5
-    },
-    {
-      "content": "testing",
-      "important": false,
-      "id": 6
     }
   ]
 }
