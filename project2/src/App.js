@@ -48,13 +48,21 @@ const App = () => {
     })
   }
 
+  const toggleNoteImportance = (id) => () => {
+    const note = notes.find(note => note.id === id)
+    const toggleNote = {...note, important: !note.important}
+    axios.put(`${baseUrl}/${id}`, toggleNote).then(response => {
+      setNotes(notes.map(note => note.id === id ? response.data : note))
+    })
+  }
+
   return (
     <div>
       <h2>Notes</h2>
       <button onClick={() => {setShowAll(!showAll)}}>
         show {showAll ? "important" : "all"}
       </button>
-      {noteToShow.map(note => <Note key={note.id} note={note} removeNote={removeNote} />)}
+      {noteToShow.map(note => <Note key={note.id} note={note} removeNote={removeNote} toggleNoteImportance={toggleNoteImportance} />)}
       <NoteForm addNote={addNote} newNote={newNote} handleChange={handleChange(setNewNote)} />
       <p>Debug: {newNote}</p>
     </div>
