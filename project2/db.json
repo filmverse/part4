@@ -24,6 +24,16 @@
       "content": "Testing",
       "important": false,
       "id": 5
+    },
+    {
+      "content": "testing again",
+      "important": true,
+      "id": 6
+    },
+    {
+      "content": "tesing new components",
+      "important": true,
+      "id": 7
     }
   ]
 }
