@@ -1,11 +1,8 @@
-
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import noteApp from './services/notes';
 import Note from './components/Note';
 import NoteForm from './components/NoteForm';
 
-const baseUrl = 'http://localhost:3001/notes'
 
 const App = () => {
 

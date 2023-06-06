@@ -1,4 +1,3 @@
-
 const Note = ({ note, removeNote, toggleNoteImportance }) => {
     const lable = note.important
         ? "make not important"

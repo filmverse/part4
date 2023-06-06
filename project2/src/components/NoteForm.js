@@ -1,4 +1,3 @@
-
 const NoteForm = ({ addNote, newNote, handleChange }) => {
     return (
         <div>
