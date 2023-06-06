@@ -10,6 +10,7 @@ const App = () => {
 
   const [ notes, setNotes ] = useState([])
   const [ newNote, setNewNote ] = useState("")
+  const [ showAll, setShowAll ] = useState(true)
 
   const hook = () => {
     axios.get(baseUrl).then(response => {
@@ -37,10 +38,17 @@ const App = () => {
     funObj(event.target.value)
   }
 
+  const noteToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true)
+
   return (
     <div>
       <h2>Notes</h2>
-      {notes.map(note => <Note key={note.id} note={note} />)}
+      <button onClick={() => {setShowAll(!showAll)}}>
+        show {showAll ? "important" : "all"}
+      </button>
+      {noteToShow.map(note => <Note key={note.id} note={note} />)}
       <NoteForm addNote={addNote} newNote={newNote} handleChange={handleChange(setNewNote)} />
       <p>Debug: {newNote}</p>
     </div>
