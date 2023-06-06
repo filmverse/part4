@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <h2>Notes</h2>
       {notes.map(note => <Note key={note.id} note={note} />)}
     </div>
   )
