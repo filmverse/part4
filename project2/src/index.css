@@ -10,3 +10,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h2 {
+  color: green;
+}
+
+li {
+  color: grey;
+  padding-top: 5px;
+  font-size: 25px;
+}
