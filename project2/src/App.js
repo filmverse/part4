@@ -13,7 +13,12 @@ const App = () => {
   const hook = () => {
     noteApp.getAll().then(response => {
       console.log(response.data)
-      setNotes(response.data)
+      const nonExisting = {
+        id: 10000,
+        content: 'This note is not saved to server',
+        important: true,
+      }
+      setNotes(response.data.concat(nonExisting))
     })
   }
   useEffect(hook, [])
@@ -41,8 +46,15 @@ const App = () => {
   const toggleNoteImportance = (id) => () => {
     const note = notes.find(note => note.id === id)
     const toggleNote = {...note, important: !note.important}
-    noteApp.update(id, toggleNote).then(response => {
+    noteApp.update(id, toggleNote)
+    .then(response => {
       setNotes(notes.map(note => note.id === id ? response.data : note))
+    })
+    .catch(error => {
+      alert(
+        `the note "${note.content}" was already deleted from the server`
+      )
+      setNotes(notes.filter(n => n.id !== id))
     })
   }
 
