@@ -42,12 +42,6 @@ const App = () => {
     .then(() => {
       setNotes(notes.filter(note => note.id !== id))
     })
-    .catch(error => {
-      alert(
-        `note associated with id "${id}" was already removed from the server`
-      )
-      setNotes(notes.filter(n => n.id !== id))
-    })
   }
 
   const toggleNoteImportance = (id) => () => {
