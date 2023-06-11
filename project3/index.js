@@ -26,7 +26,7 @@ app.get('/api/notes/:id', (request, response) => {
                 response.status(404).end()
             }
         })
-        .catch((error) => {
+        .catch(error => {
             console.log(error)
             response.status(500).end()
         })
