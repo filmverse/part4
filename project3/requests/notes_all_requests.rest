@@ -4,6 +4,9 @@ DELETE http://localhost:3001/api/notes/3
 GET http://localhost:3001/api/notes
 
 ###
+GET http://localhost:3001/api/notes/645ff62abbd0c0825cb994bb
+
+###
 POST http://localhost:3001/api/notes
 Content-Type: application/json
 
