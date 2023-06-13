@@ -50,7 +50,7 @@ app.delete('/api/notes/:id', (request, response, next) => {
 //     console.log("Same Note")
 // }
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/notes', (request, response, next) => {
     const body = request.body
     if (!body.content) {
         response.status(400).json({
@@ -61,9 +61,11 @@ app.post('/api/notes', (request, response) => {
             content: body.content,
             important: body.important || false,
         })
-        note.save().then(savedNote => {
-            response.json(savedNote)
-        })
+        note.save()
+            .then(savedNote => {
+                response.json(savedNote)
+            })
+            .catch(error => next(error))
     }
 })
 
@@ -90,6 +92,8 @@ const errorHandler = (error, request, response, next) => {
     console.error(error.message)
     if (error.name === 'CastError') {
         return response.status(400).send({ error: 'malformated id' })
+    } else if (error.name === 'ValidationError') {
+        response.status(400).json({ error: error.message })
     }
 }
 
