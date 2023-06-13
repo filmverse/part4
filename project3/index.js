@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const Note = require('./models/note')
 const cors = require('cors')
+const note = require('./models/note')
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
@@ -53,13 +54,13 @@ app.post('/api/notes', (request, response) => {
             error: "content missing"
         })
     } else {
-        const note = {
+        const note = new Note({
             content: body.content,
             important: body.important || false,
-            id: generateId(),
-        }
-        notes = notes.concat(note)
-        response.json(note)
+        })
+        note.save().then(savedNote => {
+            response.json(savedNote)
+        })
     }
 })
 
