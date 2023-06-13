@@ -14,3 +14,12 @@ Content-Type: application/json
     "content": "new note",
     "important": true
 }
+
+###
+PUT http://localhost:3001/api/notes/6488df057827a8bf9af2c3ef
+Content-Type: application/json
+
+{
+    "content": "new note",
+    "important": true
+}
