@@ -47,6 +47,10 @@ app.delete('/api/notes/:id', (request, response) => {
 //     return maxId + 1
 // }
 
+// else if (Note.findOne({ content: body.content })) {
+//     console.log("Same Note")
+// }
+
 app.post('/api/notes', (request, response) => {
     const body = request.body
     if (!body.content) {
