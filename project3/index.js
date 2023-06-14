@@ -3,7 +3,6 @@ const express = require('express')
 const app = express()
 const Note = require('./models/note')
 const cors = require('cors')
-const note = require('./models/note')
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
@@ -33,7 +32,7 @@ app.get('/api/notes/:id', (request, response, next) => {
 
 app.delete('/api/notes/:id', (request, response, next) => {
     Note.findByIdAndRemove(request.params.id)
-        .then((result) => {
+        .then(() => {
             response.status(204).end()
         })
         .catch(error => next(error))
@@ -54,7 +53,7 @@ app.post('/api/notes', (request, response, next) => {
     const body = request.body
     if (!body.content) {
         response.status(400).json({
-            error: "content missing"
+            error: 'content missing'
         })
     } else {
         const note = new Note({
