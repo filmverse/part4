@@ -1,23 +1,10 @@
 const mongoose = require('mongoose')
 
-// const password = process.argv[2]
-
-const url = process.env.MONGODB_URI
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url)
-    .then(() => {
-        console.log('Connected to MongoDB')
-    })
-    .catch((error) => {
-        console.log(`Error connecting to MongoDB: ${error.message}`)
-    })
-
 const noteSchema = new mongoose.Schema({
     content: {
         type: String,
-        minLength: 5,
-        required: true
+        required: true,
+        minlength: 5
     },
     important: Boolean,
 })
