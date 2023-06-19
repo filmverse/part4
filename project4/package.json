@@ -1,0 +1,19 @@
+{
+  "name": "project4",
+  "version": "1.0.0",
+  "description": "blog list application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filmverse/part4.git"
+  },
+  "author": "VIKAS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filmverse/part4/issues"
+  },
+  "homepage": "https://github.com/filmverse/part4#readme"
+}
