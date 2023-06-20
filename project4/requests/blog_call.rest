@@ -5,8 +5,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Youtube",
-    "author": "GOOGLE",
-    "url": "https://www.youtube.com/",
-    "likes": 9
+    "title": "ReactJS",
+    "author": "Meta",
+    "url": "https://react.dev/",
+    "likes": 3
 }
